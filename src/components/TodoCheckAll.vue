@@ -1,26 +1,27 @@
 <template>
   <div>
     <label>
-      <input type="checkbox" :checked="!anyRemainingTasks" @change="allChecked" />Check All
+      <input
+        type="checkbox"
+        :checked="!anyRemainingTasks"
+        @change="allChecked"
+      />Check All
     </label>
   </div>
 </template>
 
 <script>
-import EventBus from "../event-bus";
 export default {
   name: "todo-check-all",
-  props: {
-    anyRemainingTasks: {
-      type: Boolean,
-      required: true
+  computed: {
+    anyRemainingTasks() {
+      return this.$store.getters.anyRemainingTasks;
     }
   },
   methods: {
     allChecked() {
-      EventBus.$emit("checkAllChanged", this.anyRemainingTasks);
+      this.$store.commit("checkAll", event.target.checked);
     }
   }
 };
 </script>
-

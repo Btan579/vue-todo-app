@@ -7,7 +7,9 @@
         @dblclick="editTodo"
         class="todo-item-label"
         :class="{ completed: completed }"
-      >{{ title }}</div>
+      >
+        {{ title }}
+      </div>
       <input
         v-else
         class="todo-item-edit"
@@ -24,7 +26,6 @@
 </template>
 
 <script>
-import EventBus from "../event-bus";
 export default {
   name: "todo-item",
   props: {
@@ -60,7 +61,7 @@ export default {
   },
   methods: {
     removeTodo(id) {
-      EventBus.$emit("removedTodo", id);
+      this.$store.commit("deleteTodo", id);
     },
     editTodo() {
       this.beforeEditCache = this.title;
@@ -71,7 +72,7 @@ export default {
         this.title = this.beforeEditCache;
       }
       this.editing = false;
-      EventBus.$emit("finishedEdit", {
+      this.$store.commit("updateTodo", {
         id: this.id,
         title: this.title,
         completed: this.completed,

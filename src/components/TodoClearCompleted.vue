@@ -1,24 +1,23 @@
 <template>
   <div>
-    <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button>
+    <button v-if="showClearCompletedButton" @click="clearCompleted">
+      Clear Completed
+    </button>
   </div>
 </template>
 
 <script>
-import EventBus from "../event-bus";
 export default {
   name: "todo-clear-completed",
-  props: {
-    showClearCompletedButton: {
-      type: Boolean,
-      required: true
+  computed: {
+    showClearCompletedButton() {
+      return this.$store.getters.showClearCompletedButton;
     }
   },
   methods: {
     clearCompleted() {
-      EventBus.$emit("clearCompletedTodos");
+      this.$store.commit("clearCompleted");
     }
   }
 };
 </script>
-
