@@ -192,9 +192,6 @@ button {
 }
 .check-container {
   color: #fafdcb;
-  &:hover {
-    background: #d42845;
-  }
 }
 
 .delete-todo-icon {
