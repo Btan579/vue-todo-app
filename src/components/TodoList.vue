@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <input
       type="text"
       class="todo-input"
@@ -39,6 +39,7 @@ import TodoItemsRemaining from "./TodoItemsRemaining";
 import TodoCheckAll from "./TodoCheckAll";
 import TodoFiltered from "./TodoFiltered";
 import TodoClearCompleted from "./TodoClearCompleted";
+
 export default {
   name: "todo-list",
   components: {
@@ -51,22 +52,15 @@ export default {
   data() {
     return {
       newTodo: "",
-      idForTodo: 4,
-      beforeEditCache: ""
+      idForTodo: 4
     };
   },
   computed: {
-    remainingTodo() {
-      return this.$store.getters.remainingTodo;
-    },
     anyRemainingTasks() {
       return this.$store.getters.anyRemainingTasks;
     },
     todosArrFiltered() {
       return this.$store.getters.todosArrFiltered;
-    },
-    showClearCompletedButton() {
-      return this.$store.getters.showClearCompletedButton;
     }
   },
   methods: {
@@ -87,14 +81,35 @@ export default {
 
 <style lang="scss">
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css");
+.main {
+  background-color: #248ea9;
+  padding: 30px 15px 5px 15px;
+  margin-bottom: 30px;
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 0px 38px 0px 38px;
+  -moz-border-image: url(../assets/rope-circle.svg) 0 100 4 100 round round;
+  -webkit-border-image: url(../assets/rope-circle.svg) 0 100 4 100 round round;
+  -o-border-image: url(../assets/rope-circle.svg) 0 100 4 100 round round;
+  border-image: url(../assets/rope-circle.svg) 0 100 4 100 round round;
+}
 .todo-input {
   width: 100%;
   padding: 10px 18px;
   font-size: 18px;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
+  background-color: #28c3d4;
+  color: #fafdcb;
+  border-radius: 25px;
+
   &:focus {
     outline: 0;
   }
+}
+
+.todo-input::placeholder {
+  color: #fafdcb;
+  font-family: "Raleway", sans-serif;
 }
 .todo-item {
   margin-bottom: 12px;
@@ -107,6 +122,7 @@ export default {
 .remove-item {
   cursor: pointer;
   margin-left: 14px;
+  color: #fafdcb;
   &:hover {
     color: black;
   }
@@ -121,16 +137,22 @@ export default {
   padding: 10px;
   border: 1px solid white;
   margin-left: 12px;
+  background-color: #28c3d4;
+  color: #fafdcb;
+  text-shadow: -1px 1px 10px rgba(0, 0, 0, 0.897);
+  border-radius: 25px;
 }
 
 .todo-item-edit {
   font-size: 24px;
-  color: #2c3e50;
+  background-color: #fafdcb;
+  color: #248ea9;
   margin-left: 12px;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+  border-radius: 25px;
   &:focus {
     outline: none;
   }
@@ -153,10 +175,12 @@ export default {
 
 button {
   font-size: 14px;
-  background-color: white;
+  background-color: #fafdcb;
   appearance: none;
+  border-radius: 25px;
+  margin: 3px;
   &:hover {
-    background: lightgreen;
+    background: #28c3d4;
   }
   &:focus {
     outline: none;
@@ -164,9 +188,23 @@ button {
 }
 
 .active {
-  background: lightgreen;
+  background: #28c3d4;
+}
+.check-container {
+  color: #fafdcb;
+  &:hover {
+    background: #d42845;
+  }
 }
 
+.delete-todo-icon {
+  height: 50px;
+  width: 50px;
+  &:hover {
+    background: #d42845;
+    border-radius: 25px;
+  }
+}
 // CSS Transitions
 .fade-enter-active,
 .fade-leave-active {

@@ -21,7 +21,13 @@
         v-focus
       />
     </div>
-    <div class="remove-item" @click="removeTodo(todo.id)">&times;</div>
+    <div class="remove-item" @click="removeTodo(todo.id)">
+      <img
+        alt="anchor icon"
+        class="delete-todo-icon"
+        src="../assets/anchor.svg"
+      />
+    </div>
   </div>
 </template>
 
