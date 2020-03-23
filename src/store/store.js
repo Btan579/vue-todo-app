@@ -34,10 +34,6 @@ export const store = new Vuex.Store({
             return state.todosArr.filter(todo => !todo.completed).length;
         },
         anyRemainingTasks(state, getters) {
-            // if(){
-
-            // }
-            console.log(getters.remainingTodo);
             return getters.remainingTodo !== 0;
         },
         todosArrFiltered(state) {
